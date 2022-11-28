@@ -55,7 +55,7 @@ class Menu {
         $apellidoBuscado = Utiles::pedirInformacion('Ingrese un nombre a buscar o presione ENTER para todos', false);
         $resultado =  $bd->buscarPorApellido($apellidoBuscado);
         foreach($resultado as $alumno){
-            $impresionAlumno = Utiles::informarUsuario($alumno->imprimir());
+            Utiles::informarUsuario($alumno->imprimir());
             // echo($alumno->imprimir());
         }
     }
@@ -94,11 +94,16 @@ class Menu {
         return $nuevoAlumno;
     }
 
+
+
     private function borrarDatos(IBaseDatos $bd, &$errores){
+        $this->listarDatos($bd);
         $pk = Utiles::pedirInformacion('Ingrese la clave de identificación a borrar');
         $bd->borrar($pk);
         $errores = $bd->getErroresBD();
     }
+
+
 
     private function modificarDatos(IBaseDatos $bd, &$errores){
         $pk = Utiles::pedirInformacion('Ingrese la clave de identificación a modificar');

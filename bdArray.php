@@ -10,6 +10,9 @@ class BdArray implements IBaseDatos{
         $this->baseDatos = $datosIniciales;
     }
 
+
+    // ---- funciones
+
     public function insertar($nuevoElemento, $clave=null)
     {
         if($clave===null){
@@ -23,6 +26,7 @@ class BdArray implements IBaseDatos{
         $this->baseDatos[$clave] = $nuevoElemento;
         $this->erroresBD = [];
     }
+
 
     public function buscarPorClave($clave){
         if(array_key_exists($clave, $this->baseDatos)){
@@ -44,6 +48,16 @@ class BdArray implements IBaseDatos{
         return $resultado;
     }
     public function borrar($clave){
+        if($this->buscarPorClave($clave)===null) {
+            $this->erroresBD = ['Clave no existe'];
+            return;
+        } else {
+            $baseActualizada = $this->baseDatos;
+            echo "Borrar: " . $clave ."\n";
+            unset($baseActualizada[$clave]);
+            return $this->baseDatos = $baseActualizada;
+        }
+
     }
 
     public function reemplazar($clave, $nuevoElemento){   
