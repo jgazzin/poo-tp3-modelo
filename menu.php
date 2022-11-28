@@ -90,10 +90,10 @@ class Menu {
         }else{
             $nuevoAlumno = new Alumno($pk, $apellido, $materia, $nota);
         }
+        // var_dump($nuevoAlumno);
         
         return $nuevoAlumno;
     }
-
 
 
     private function borrarDatos(IBaseDatos $bd, &$errores){
@@ -106,6 +106,7 @@ class Menu {
 
 
     private function modificarDatos(IBaseDatos $bd, &$errores){
+        $this->listarDatos($bd);
         $pk = Utiles::pedirInformacion('Ingrese la clave de identificación a modificar');
         $alumnoAnterior = $bd->buscarPorClave($pk);
         if($alumnoAnterior===null){

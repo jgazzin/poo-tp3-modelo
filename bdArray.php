@@ -61,6 +61,18 @@ class BdArray implements IBaseDatos{
     }
 
     public function reemplazar($clave, $nuevoElemento){   
+        $alumnoModificar = $this->buscarPorClave($clave);
+        // echo "alumno a modificar--------------\n";
+        // var_dump($alumnoModificar);
+        // echo "alumno corregido-----------\n";
+        // var_dump($nuevoElemento);
+        $baseActualizada = $this->borrar($clave);
+        // echo "base sin alumno a mofificar\n";
+        // var_dump($baseActualizada);
+        $this->insertar($nuevoElemento, $clave);
+        // echo "base con alumno a mofificar\n";
+        // var_dump($this->baseDatos);
+        return $this->baseDatos;
     }
 
     public function getErroresBD(){
