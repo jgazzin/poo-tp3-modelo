@@ -23,6 +23,7 @@ class BdArray implements IBaseDatos{
             $this->erroresBD = ['Clave ingresada duplicada'];
             return;
         }
+
         $this->baseDatos[$clave] = $nuevoElemento;
         $this->erroresBD = [];
     }
@@ -37,8 +38,7 @@ class BdArray implements IBaseDatos{
         return null;
     }
 
-    public function buscarPorApellido($apellido="")
-    {
+    public function buscarPorApellido($apellido=""){
         $resultado = [];
         foreach($this->baseDatos as $alumno){
             if(empty($apellido) || $alumno->getApellido() === $apellido){
@@ -47,8 +47,11 @@ class BdArray implements IBaseDatos{
         }        
         return $resultado;
     }
+
+
+
     public function borrar($clave){
-        if($this->buscarPorClave($clave)===null) {
+        if($this->buscarPorClave($clave)==null) {
             $this->erroresBD = ['Clave no existe'];
             return;
         } else {

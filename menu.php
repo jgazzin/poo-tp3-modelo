@@ -51,14 +51,17 @@ class Menu {
         }
     }
 
+
     private function listarDatos(IBaseDatos $bd){
         $apellidoBuscado = Utiles::pedirInformacion('Ingrese un nombre a buscar o presione ENTER para todos', false);
+
         $resultado =  $bd->buscarPorApellido($apellidoBuscado);
         foreach($resultado as $alumno){
             Utiles::informarUsuario($alumno->imprimir());
             // echo($alumno->imprimir());
         }
     }
+
 
     private function cargarDatos(IBaseDatos $bd, &$errores){
         $nuevoAlumno = $this->pedirDatosAlumno();
@@ -69,6 +72,8 @@ class Menu {
             $errores = $nuevoAlumno->getErrores();
         }
     }
+
+
 
     private function pedirDatosAlumno($alumno=null){
         // si no pasamos una clave, es porque queremos una nueva 
@@ -96,6 +101,7 @@ class Menu {
     }
 
 
+
     private function borrarDatos(IBaseDatos $bd, &$errores){
         $this->listarDatos($bd);
         $pk = Utiles::pedirInformacion('Ingrese la clave de identificación a borrar');
@@ -109,11 +115,14 @@ class Menu {
         $this->listarDatos($bd);
         $pk = Utiles::pedirInformacion('Ingrese la clave de identificación a modificar');
         $alumnoAnterior = $bd->buscarPorClave($pk);
+        //var_dump($alumnoAnterior);
+
         if($alumnoAnterior===null){
             $errores = $bd->getErroresBD();
             return;
         }
         $alumnoModificado = $this->pedirDatosAlumno($alumnoAnterior);
+
         if($alumnoModificado->esAlumnoValido()===false){
             $errores = $alumnoModificado->getErrores();
             return;

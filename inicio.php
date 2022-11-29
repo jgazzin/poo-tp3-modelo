@@ -44,7 +44,7 @@ switch($opcionBD){
             $pk1 = time();
             $alu1 = new Alumno($pk1, 'ape1', 'ipoo', 10);
             $pk2 = time()+1;
-            $alu2 = new AlumnoRegular($pk2, 'ape2', 'ipoo', 5, 2012);
+            $alu2 = new AlumnoRegular($pk2, 'ape2', 'ipoo', 2, 2012);
             $inicio = [$pk1=>$alu1, $pk2=>$alu2];
 
 
