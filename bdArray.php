@@ -5,8 +5,7 @@ class BdArray implements IBaseDatos{
     protected $baseDatos;
     protected $erroresBD = [];
 
-    public function __construct($datosIniciales=[])
-    {
+    public function __construct($datosIniciales=[]){
         $this->baseDatos = $datosIniciales;
     }
 
@@ -47,7 +46,6 @@ class BdArray implements IBaseDatos{
         }        
         return $resultado;
     }
-
 
 
     public function borrar($clave){
