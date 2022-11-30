@@ -18,6 +18,7 @@ class Ejercicio {
             $opcion = Utiles::pedirInformacion('Elija una opción');
             $errores = [];
             $this->menu->ejecutarAccion($opcion, $this->bd, $errores);
+            
             if(count($errores)>0){
                 echo ("Ocurrieron los siguientes errores: ".PHP_EOL);
                 foreach($errores as $error){
